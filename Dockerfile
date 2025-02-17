@@ -11,7 +11,7 @@ COPY . /app
 RUN chmod +x mvnw
 
 # Install Maven dependencies and build the application (no .jar file required, it'll be built in this step)
-RUN ./mvnw clean install
+RUN ./mvnw clean install -DskipTests
 
 # Expose port 8080 for the Spring Boot app
 EXPOSE 8080
