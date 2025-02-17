@@ -3,12 +3,11 @@
 > A lightweight task management web app built with Java Spring Boot, allowing users to create, edit, delete, and view tasks effortlessly with a user-friendly UI.
 
 ## System Architecture 📐
-#### 🔹 This project follows a Layered Architecture to ensure clean separation of concerns and maintainability:
+#### This project follows a Layered Architecture to ensure clean separation of concerns and maintainability:
 - Controller Layer 🎯 – Handles HTTP requests and responses
 - Service Layer ⚙️ – Implements business logic.
 - Repository Layer 🗄️ – Manages database operations.
 - Model Layer 📄 – Defines the data structure.
-> This architecture enhances scalability, readability, and modularity, making future improvements and database integration seamless.
 
 ## Built With ⚡️
 - Java Langugae
