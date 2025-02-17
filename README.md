@@ -10,7 +10,7 @@
 - Model Layer 📄 – Defines the data structure.
 
 ## Built With ⚡️
-- Java Langugae
+- Java Language
 - Spring Boot
 - H2 Database
 - Thymeleaf
@@ -21,7 +21,7 @@
 - VSCode IDE
 
 ## Project Preview 👀
-<img src="demo.png" width="70%">
+<img src="demo.png" width="100%">
 
 ## Authors
 
