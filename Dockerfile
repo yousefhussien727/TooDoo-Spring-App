@@ -14,10 +14,11 @@ COPY . /app
 RUN chmod +x mvnw
 
 # Install Maven dependencies and build the application (no .jar file required, it'll be built in this step)
-RUN ./mvnw clean install -DskipTests
+# RUN ./mvnw clean install -DskipTests
+RUN ./mvnw clean package -DskipTests && ls -l target/
 
 # Copy the built JAR file to a fixed location
-RUN cp target/tooDoo-0.0.1-SNAPSHOT.jar app.jar
+RUN cp target/*.jar app.jar
 
 # Expose port 8080 for the Spring Boot app
 EXPOSE 8080
