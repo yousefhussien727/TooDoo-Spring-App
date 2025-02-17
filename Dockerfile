@@ -1,21 +1,29 @@
-# Use OpenJDK 21 as base image for Java application
+# Use the OpenJDK 21 base image
 FROM openjdk:21-jdk-slim
 
-# Set the working directory in the container
+# Set the working directory inside the container
 WORKDIR /app
 
-# Copy the Maven wrapper and pom.xml
-COPY mvnw pom.xml ./
+# Copy all files into the container
+COPY . /app
+# Copy only necessary files first (to improve caching)
+# COPY pom.xml mvnw ./
+# COPY src ./src
 
-# Copy the source code and package it
-COPY src ./src
-RUN ./mvnw clean package
+# Make the Maven wrapper executable
+RUN chmod +x mvnw
 
-# Copy the built JAR file to the app directory
-COPY target/*.jar /app/app.jar
+# Install Maven dependencies and build the application (no .jar file required, it'll be built in this step)
+RUN ./mvnw clean install -DskipTests
+
+# Copy the built JAR file to a fixed location
+RUN cp target/tooDoo-0.0.1-SNAPSHOT.jar app.jar
 
 # Expose port 8080 for the Spring Boot app
 EXPOSE 8080
 
-# Run the Spring Boot application
-CMD ["java", "-jar", "/app/app.jar"]
+# Run the application (this runs the .jar after building it)
+CMD ["java", "-jar", "app.jar"]
+# CMD ["java", "-jar", "target/tooDoo-0.0.1-SNAPSHOT.jar"]
+# CMD ["java", "-jar", "target/*.jar"]
+
