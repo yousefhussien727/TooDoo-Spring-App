@@ -2,6 +2,9 @@
 **Java Spring Boot - Web Application Project**
 > A lightweight task management web app built with Java Spring Boot, allowing users to create, edit, delete, and view tasks effortlessly with a user-friendly UI.
 
+## Live Demo ✨
+> https://toodoo-ugyb.onrender.com/
+
 ## System Architecture 📐
 #### This project follows a Layered Architecture to ensure clean separation of concerns and maintainability:
 - Controller Layer 🎯 – Handles HTTP requests and responses
@@ -17,6 +20,7 @@
 - HTML & CSS
 - Javascript
 - Maven
+- Docker
 - Postman Tool
 - VSCode IDE
 
