@@ -1,0 +1,161 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    /* background: #78c1f3; */
+    background-image: linear-gradient(100deg, #001214, #001f29);
+    /* color: white; */
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    background: #ffffff;
+    padding: 25px;
+    margin: 25px;
+    width: 550px;
+    border-radius: 10px;
+}
+
+/* todo-header content (Logo) */
+.todo-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    padding-left: 5px;
+}
+
+.todo-header h2 {
+    color: #001f29;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+/* todo-body content (Add todo form) */
+.todo-body {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #edeef0;
+    border-radius: 30px;
+    padding-left: 20px;
+    margin-bottom: 25px;
+}
+
+.todo-body input {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 13px 0;
+    font-size: 18px;
+}
+
+.todo-body span {
+    cursor: pointer;
+    border-radius: 100%;
+    /* height: 55px; */
+    /* width: 55px; */
+    padding: 15px;
+    background: #0481ab;
+    color: #ffffff;
+    font-size: 28px;
+}
+
+
+/* todo-list content (List of tasks) */
+.todo-list li {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background: #edeef0;
+    height: 60px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    font-size: 18px;
+    list-style: none;
+}
+
+
+/* Default state (hidden initially) */
+.todo-list li {
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease-in, transform 0.3s ease-in;
+}
+
+/* When data is added, it should have this class */
+.todo-list li.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* When data is removed, apply this class before deleting */
+.todo-list li.removing {
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+}
+
+.todo-list li .title {
+    max-width: 65%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: default;
+}
+
+.todo-controls {
+    display: inline-flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    flex: 0 0 140px;
+}
+
+.todo-controls span {
+    padding: 10px;
+    border-radius: 100%;
+    color: #fff;
+    font-size: 20px;
+}
+
+.todo-controls span.edit {
+    background-color: #F5AE14;
+}
+
+.todo-controls span.delete {
+    background-color: #fb4d3d;
+}
+
+.todo-controls span.toggle {
+    background-color: #0481ab;
+}
+
+.todo-list li.done .todo-controls span.edit,
+.todo-list li.done .todo-controls span.delete {
+    display: none;
+}
+
+.todo-list li.done .todo-controls span.toggle {
+    background-color: #0481ab;
+}
+
+.todo-list li.done {
+    background-color: #71d0aa;
+}
+
+.todo-list li.done .title {
+    text-decoration: line-through;
+}

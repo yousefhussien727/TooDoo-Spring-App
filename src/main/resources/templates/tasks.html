@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TooDoo Spring App</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <div class="todo-header">
+            <h2>TooDoo</h2>
+        </div>
+        <form class="todo-body" method="post" action="/tasks">
+            <input type="text" name="title" id="todoText" class="todo-input" placeholder="Add New Thing To Do..."
+                required />
+            <button type="submit" style="all: unset; cursor: pointer;">
+                <span class="material-icons">add</span>
+            </button>
+        </form>
+        <ul class="todo-list">
+            <li th:each="task: ${tasksList}" th:classappend="${task.completed} ? 'done' : ''" class="show">
+                <div class="title" th:text="${task.title}" th:id="'title-' + ${task.id}"></div>
+                <div class="todo-controls">
+                    <a th:href="@{/tasks/{id}/toggle(id=${task.id})}">
+                        <span class="material-icons toggle"
+                            th:text="${task.completed} ? 'do_not_disturb_on' : 'check_circle'">check_circle</span>
+                    </a>
+                    <a th:href="@{/tasks/{id}/remove(id=${task.id})}">
+                        <span class="material-icons delete">delete</span>
+                    </a>
+                    <a th:onclick="|editTaskTitle('${task.id}')|" href="javascript:void(0);">
+                        <span class="material-icons edit">edit</span>
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</body>
+
+<script>
+    function editTaskTitle(taskId) {
+        let titleCell = document.getElementById('title-' + taskId);
+        if (!titleCell) {
+            console.error("Element not found: title-" + taskId);
+            return;
+        }
+
+        let currentTitle = titleCell.innerText;
+        console.log("Editing task:", taskId, "Current title:", currentTitle);
+
+        titleCell.innerHTML = `
+        <form method="post" action="/tasks/${taskId}/update">
+            <input type="text" id="newTitle-${taskId}" value="${currentTitle}" name="newTitle">
+            <input type="submit" value="Save">
+        </form>
+        `;
+    }
+</script>
+
+
+</html>
